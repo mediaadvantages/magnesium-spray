@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Indulge in Seven Minerals Pure Magnesium Oil Spray, USP-grade luxury for muscle relief, sleep, and stress. Shop now for a transformative wellness experience!">
+  <meta name="keywords" content="magnesium oil spray, muscle relief, sleep aid, stress relief, USP grade magnesium, luxury wellness">
+  <title>Seven Minerals Magnesium Oil Spray - Pure Bliss</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- GSAP and ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <!-- Three.js for 3D Hero -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+    }
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    #hero-canvas {
+      height: 100vh;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .neumorphic {
+      background: #F5F6F5;
+      box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.1), -8px -8px 16px rgba(255, 255, 255, 0.5);
+    }
+    .cta-button {
+      transition: all 0.3s ease;
+    }
+    .cta-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+    .sticky-cta {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      display: none;
+    }
+    .sticky-cta.show {
+      display: block;
+    }
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: #FF6F61;
+      z-index: 50;
+      transition: width 0.3s ease;
+    }
+    #menu-toggle {
+      display: none;
+    }
+    #menu {
+      transition: all 0.3s ease;
+    }
+    @media (max-width: 768px) {
+      #menu {
+        display: none;
+      }
+      #menu-toggle:checked ~ #menu {
+        display: block;
+      }
+      .hero-content {
+        flex-direction: column;
+      }
+      #hero-canvas {
+        height: 50vh;
+      }
+    }
+  </style>
+</head>
+<body class="text-gray-800 bg-pearl">
+  <!-- Progress Bar -->
+  <div class="progress-bar"></div>
+
+  <!-- Header -->
+  <header class="sticky-header glass shadow-2xl">
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center text-white">
+      <div class="text-4xl font-extrabold">PureBliss</div>
+      <input type="checkbox" id="menu-toggle" class="hidden">
+      <label for="menu-toggle" class="md:hidden cursor-pointer">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </label>
+      <div id="menu" class="md:flex space-x-8">
+        <a href="#home" class="block py-2 hover:text-coral text-lg">Home</a>
+        <a href="#benefits" class="block py-2 hover:text-coral text-lg">Benefits</a>
+        <a href="#showcase" class="block py-2 hover:text-coral text-lg">How It Works</a>
+        <a href="#reviews" class="block py-2 hover:text-coral text-lg">Reviews</a>
+        <a href="#faq" class="block py-2 hover:text-coral text-lg">FAQ</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="relative text-white py-24 min-h-screen bg-gradient-to-br from-sapphire to-coral">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-content container mx-auto px-6 flex flex-col md:flex-row items-center">
+      <div class="md:w-1/2 text-center md:text-left" data-gsap="hero-text">
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">Pure Bliss in Every Spritz</h1>
+        <p class="text-xl mb-8">Indulge in Seven Minerals Magnesium Oil Spray, a USP-grade elixir for muscle relief, serene sleep, and radiant wellness.</p>
+        <a href="https://www.amazon.com/Pure-MAGNESIUM-OIL-Spray-Exceptional/dp/B00Q78C1EW?th=1" target="_blank" class="cta-button inline-block bg-gold text-sapphire font-semibold py-4 px-8 rounded-full neumorphic">Shop Now</a>
+      </div>
+      <div class="md:w-1/2 mt-12 md:mt-0" data-gsap="hero-image">
+        <img src="https://waterstainremovers.com/wp-content/uploads/2025/04/magnesium-spray-bottle-3d.png" alt="Seven Minerals Magnesium Oil Spray 3D" class="w-full rounded-2xl shadow-2xl hidden">
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section id="benefits" class="py-24 bg-pearl">
+    <div class="container mx-auto px-6">
+      <h2 class="text-5xl font-bold text-center mb-16 text-sapphire" data-gsap="section-title">A Touch of Luxury Wellness</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div class="text-center glass p-8 rounded-2xl hover:scale-105 transition-transform" data-gsap="benefit">
+          <img src="custom-icon-relief.jpg" alt="Muscle Relief Icon" class="w-24 mx-auto mb-6 animate-pulse">
+          <h3 class="text-2xl font-semibold mb-4 text-sapphire">Melt Away Tension</h3>
+          <p class="text-gray-600">Fast-absorbing magnesium chloride soothes cramps and soreness with effortless elegance.</p>
+        </div>
+        <div class="text-center glass p-8 rounded-2xl hover:scale-105 transition-transform" data-gsap="benefit">
+          <img src="custom-icon-dream.jpg" alt="Sleep Support Icon" class="w-24 mx-auto mb-6 animate-pulse">
+          <h3 class="text-2xl font-semibold mb-4 text-sapphire">Embrace Serenity</h3>
+          <p class="text-gray-600">Spritz before bed for a night of deep, restorative sleep wrapped in luxury.</p>
+        </div>
+        <div class="text-center glass p-8 rounded-2xl hover:scale-105 transition-transform" data-gsap="benefit">
+          <img src="custom-icon-purity.jpg" alt="USP Grade Icon" class="w-24 mx-auto mb-6 animate-pulse">
+          <h3 class="text-2xl font-semibold mb-4 text-sapphire">Pure Opulence</h3>
+          <p class="text-gray-600">USP-grade magnesium, free of toxins, crafted for 9 months of exquisite relief.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Spray Preview -->
+  <section id="preview" class="py-24 bg-gradient-to-br from-sapphire to-coral text-white">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-5xl font-bold mb-16" data-gsap="section-title">Experience the Magic</h2>
+      <div id="spray-preview" class="relative w-full max-w-md mx-auto">
+        <canvas id="preview-canvas" class="w-full h-96 rounded-2xl shadow-2xl"></canvas>
+        <button id="spray-button" class="cta-button bg-gold text-sapphire font-semibold py-3 px-6 rounded-full mt-6 neumorphic">Feel the Spritz</button>
+      </div>
+      <p class="text-lg mt-8">Click to witness the luxurious absorption of magnesium oil.</p>
+    </div>
+  </section>
+
+  <!-- Showcase Section -->
+  <section id="showcase" class="py-24 bg-pearl">
+    <div class="container mx-auto px-6">
+      <h2 class="text-5xl font-bold text-center mb-16 text-sapphire" data-gsap="section-title">Elevate Your Rituals</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div data-gsap="showcase">
+          <img src="custom-magnesium-lifestyle-serenity.jpg" alt="Magnesium Spray for Serenity" class="w-full rounded-2xl shadow-lg hover:scale-105 transition-transform">
+          <p class="text-center mt-6 text-gray-600">Surrender to tranquility with a nightly spritz.</p>
+        </div>
+        <div data-gsap="showcase">
+          <img src="custom-magnesium-lifestyle-recovery.jpg" alt="Magnesium Spray for Recovery" class="w-full rounded-2xl shadow-lg hover:scale-105 transition-transform">
+          <p class="text-center mt-6 text-gray-600">Rejuvenate effortlessly after every exertion.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews Section -->
+  <section id="reviews" class="py-24 bg-gradient-to-br from-sapphire to-coral text-white">
+    <div class="container mx-auto px-6">
+      <h2 class="text-5xl font-bold text-center mb-16" data-gsap="section-title">Raves from the Refined</h2>
+      <div class="relative overflow-hidden">
+        <div id="review-carousel" class="flex transition-transform duration-500">
+          <div class="min-w-full md:min-w-1/3 glass p-8 rounded-2xl mx-4" data-gsap="review">
+            <p class="text-gray-200 mb-6">"A nightly ritual that banishes my cramps. Pure luxury!"</p>
+            <p class="font-semibold">Emma R.</p>
+          </div>
+          <div class="min-w-full md:min-w-1/3 glass p-8 rounded-2xl mx-4" data-gsap="review">
+            <p class="text-gray-200 mb-6">"Sleeps so divine, it’s like a spa in a bottle!"</p>
+            <p class="font-semibold">Noah T.</p>
+          </div>
+          <div class="min-w-full md:min-w-1/3 glass p-8 rounded-2xl mx-4" data-gsap="review">
+            <p class="text-gray-200 mb-6">"Stress melts away with every spritz. Exquisite!"</p>
+            <p class="font-semibold">Olivia S.</p>
+          </div>
+        </div>
+        <button id="prev-review" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gold p-2 rounded-full">←</button>
+        <button id="next-review" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gold p-2 rounded-full">→</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-24 bg-pearl">
+    <div class="container mx-auto px-6">
+      <h2 class="text-5xl font-bold text-center mb-16 text-sapphire" data-gsap="section-title">Curated Answers for You</h2>
+      <div class="space-y-8">
+        <div class="glass p-8 rounded-2xl hover:scale-105 transition-transform" data-gsap="faq">
+          <h3 class="text-2xl font-semibold mb-4 text-sapphire">How do I indulge in the spray?</h3>
+          <p class="text-gray-600">Spritz 5-10 times on clean skin and massage in. A daily ritual for radiant results.</p>
+        </div>
+        <div class="glass p-8 rounded-2xl hover:scale-105 transition-transform" data-gsap="faq">
+          <h3 class="text-2xl font-semibold mb-4 text-sapphire">Is a tingle expected?</h3>
+          <p class="text-gray-600">A gentle tingle is normal, fading with use, signaling magnesium’s embrace.</p>
+        </div>
+        <div class="glass p-8 rounded-2xl hover:scale-105 transition-transform" data-gsap="faq">
+          <h3 class="text-2xl font-semibold mb-4 text-sapphire">How long does the elixir last?</h3>
+          <p class="text-gray-600">The 12 oz bottle offers up to 9 months of opulent relief.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="buy-now" class="bg-gradient-to-br from-sapphire to-coral text-white py-24">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-5xl font-bold mb-8" data-gsap="section-title">Embrace Luxury Wellness Now</h2>
+      <p class="text-xl mb-8" data-gsap="cta-text">Only 32 left in stock! Secure your elixir with free shipping.</p>
+      <div id="countdown" class="text-2xl font-semibold mb-8" data-gsap="countdown">00:00:00</div>
+      <img src="custom-trust-lux.jpg" alt="100% Pure Promise" class="w-36 mx-auto mb-8 animate-pulse" data-gsap="trust-badge">
+      <a href="https://www.amazon.com/Pure-MAGNESIUM-OIL-Spray-Exceptional/dp/B00Q78C1EW?th=1" target="_blank" class="cta-button inline-block bg-gold text-sapphire font-semibold py-4 px-8 rounded-full neumorphic" data-gsap="cta-button">Shop Now</a>
+    </div>
+  </section>
+
+  <!-- Sticky CTA -->
+  <div class="sticky-cta">
+    <a href="https://www.amazon.com/Pure-MAGNESIUM-OIL-Spray-Exceptional/dp/B00Q78C1EW?th=1" target="_blank" class="cta-button bg-gold text-sapphire font-semibold py-3 px-6 rounded-full neumorphic shadow-lg">Add to Cart</a>
+  </div>
+
+  <!-- Exit Intent Pop-Up -->
+  <div id="exit-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="glass p-8 rounded-2xl text-center max-w-md">
+      <h3 class="text-3xl font-bold text-sapphire mb-4">Don’t Miss Your Moment!</h3>
+      <p class="text-gray-600 mb-6">Claim your free guide: “5 Secrets to Luxe Wellness” with your purchase.</p>
+      <a href="https://www.amazon.com/Pure-MAGNESIUM-OIL-Spray-Exceptional/dp/B00Q78C1EW?th=1" target="_blank" class="cta-button inline-block bg-coral text-sapphire font-semibold py-3 px-6 rounded-full">Shop Now</a>
+      <button id="close-popup" class="mt-4 text-gray-600 underline">Close</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-sapphire text-white py-12">
+    <div class="container mx-auto px-6 text-center">
+      <p class="mb-6 text-gray-300">© 2025 PureBliss. All rights reserved.</p>
+      <div class="space-x-6">
+        <a href="#" class="text-gray-300 hover:text-coral">Privacy Policy</a>
+        <a href="#" class="text-gray-300 hover:text-coral">Terms of Service</a>
+        <a href="#" class="text-gray-300 hover:text-coral">Contact Us</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript for Interactivity -->
+  <script>
+    // Custom Colors
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sapphire: '#1B263B',
+            gold: '#D4A017',
+            pearl: '#F5F6F5',
+            coral: '#FF6F61',
+          },
+        },
+      },
+    };
+
+    // GSAP Animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero animations
+    gsap.from('[data-gsap="hero-text"]', {
+      opacity: 0,
+      y: 100,
+      duration: 1.5,
+      ease: 'power4.out',
+    });
+    gsap.from('[data-gsap="hero-image"]', {
+      opacity: 0,
+      scale: 0.7,
+      duration: 1.5,
+      delay: 0.5,
+      ease: 'power4.out',
+    });
+
+    // Section title animations
+    gsap.utils.toArray('[data-gsap="section-title"]').forEach(title => {
+      gsap.from(title, {
+        opacity: 0,
+        y: 50,
+        duration: 1.2,
+        scrollTrigger: {
+          trigger: title,
+          start: 'top 80%',
+        },
+      });
+    });
+
+    // Benefit animations
+    gsap.utils.toArray('[data-gsap="benefit"]').forEach((benefit, index) => {
+      gsap.from(benefit, {
+        opacity: 0,
+        y: 70,
+        duration: 1.2,
+        delay: index * 0.3,
+        scrollTrigger: {
+          trigger: benefit,
+          start: 'top 80%',
+        },
+      });
+    });
+
+    // Showcase animations
+    gsap.utils.toArray('[data-gsap="showcase"]').forEach(showcase => {
+      gsap.from(showcase, {
+        opacity: 0,
+        x: showcase.offsetLeft < window.innerWidth / 2 ? -70 : 70,
+        duration: 1.2,
+        scrollTrigger: {
+          trigger: showcase,
+          start: 'top 80%',
+        },
+      });
+    });
+
+    // Review animations
+    gsap.utils.toArray('[data-gsap="review"]').forEach((review, index) => {
+      gsap.from(review, {
+        opacity: 0,
+        y: 70,
+        duration: 1.2,
+        delay: index * 0.3,
+        scrollTrigger: {
+          trigger: review,
+          start: 'top 80%',
+        },
+      });
+    });
+
+    // FAQ animations
+    gsap.utils.toArray('[data-gsap="faq"]').forEach(faq => {
+      gsap.from(faq, {
+        opacity: 0,
+        y: 70,
+        duration: 1.2,
+        scrollTrigger: {
+          trigger: faq,
+          start: 'top 80%',
+        },
+      });
+    });
+
+    // CTA animations
+    gsap.from('[data-gsap="cta-text"]', {
+      opacity: 0,
+      y: 50,
+      duration: 1.2,
+      scrollTrigger: {
+        trigger: '[data-gsap="cta-text"]',
+        start: 'top 80%',
+      },
+    });
+    gsap.from('[data-gsap="countdown"]', {
+      opacity: 0,
+      scale: 0.7,
+      duration: 1.2,
+      delay: 0.3,
+      scrollTrigger: {
+        trigger: '[data-gsap="countdown"]',
+        start: 'top 80%',
+      },
+    });
+    gsap.from('[data-gsap="trust-badge"]', {
+      opacity: 0,
+      y: 50,
+      duration: 1.2,
+      delay: 0.6,
+      scrollTrigger: {
+        trigger: '[data-gsap="trust-badge"]',
+        start: 'top 80%',
+      },
+    });
+    gsap.from('[data-gsap="cta-button"]', {
+      opacity: 0,
+      scale: 0.7,
+      duration: 1.2,
+      delay: 0.9,
+      scrollTrigger: {
+        trigger: '[data-gsap="cta-button"]',
+        start: 'top 80%',
+      },
+    });
+
+    // 3D Hero Scene with Mist Particles
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('hero-canvas'), alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    // Bottle
+    const geometry = new THREE.CylinderGeometry(0.5, 0.5, 2, 32);
+    const texture = new THREE.TextureLoader().load('https://waterstainremovers.com/wp-content/uploads/2025/04/magnesium-spray-bottle-3d.png');
+    const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
+    const bottle = new THREE.Mesh(geometry, material);
+    scene.add(bottle);
+
+    // Mist Particles
+    const particleGeometry = new THREE.BufferGeometry();
+    const particleCount = 200;
+    const positions = new Float32Array(particleCount * 3);
+    for (let i = 0; i < particleCount * 3; i++) {
+      positions[i] = (Math.random() - 0.5) * 3;
+    }
+    particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const particleMaterial = new THREE.PointsMaterial({ color: 0xFFFFFF, size: 0.05, transparent: true, opacity: 0.5 });
+    const particles = new THREE.Points(particleGeometry, particleMaterial);
+    scene.add(particles);
+
+    // Lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
+    const pointLight = new THREE.PointLight(0xffffff, 1, 100);
+    pointLight.position.set(5, 5, 5);
+    scene.add(pointLight);
+
+    camera.position.z = 5;
+
+    function animateHero() {
+      requestAnimationFrame(animateHero);
+      bottle.rotation.y += 0.01;
+      particles.rotation.y += 0.005;
+      renderer.render(scene, camera);
+    }
+    animateHero();
+
+    // Spray Preview
+    const previewCanvas = document.getElementById('preview-canvas');
+    const ctx = previewCanvas.getContext('2d');
+    let spraying = false;
+
+    function drawSpray() {
+      ctx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+      ctx.beginPath();
+      ctx.arc(previewCanvas.width / 2, previewCanvas.height / 2, spraying ? 60 : 0, 0, Math.PI * 2);
+      ctx.fill();
+      if (spraying) requestAnimationFrame(drawSpray);
+    }
+
+    document.getElementById('spray-button').addEventListener('click', () => {
+      spraying = true;
+      drawSpray();
+      setTimeout(() => spraying = false, 1000);
+    });
+
+    // Review Carousel
+    const carousel = document.getElementById('review-carousel');
+    const prevButton = document.getElementById('prev-review');
+    const nextButton = document.getElementById('next-review');
+    let currentIndex = 0;
+
+    function updateCarousel() {
+      carousel.style.transform = `translateX(-${currentIndex * 100 / 3}%)`;
+    }
+
+    nextButton.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % 3;
+      updateCarousel();
+    });
+    prevButton.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + 3) % 3;
+      updateCarousel();
+    });
+
+    // Countdown Timer
+    const countdown = document.getElementById('countdown');
+    const endTime = new Date().getTime() + 24 * 60 * 60 * 1000;
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const timeLeft = endTime - now;
+      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+      countdown.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      if (timeLeft < 0) countdown.textContent = 'Offer Expired';
+    }
+    setInterval(updateCountdown, 1000);
+
+    // Sticky CTA
+    const stickyCta = document.querySelector('.sticky-cta');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) stickyCta.classList.add('show');
+      else stickyCta.classList.remove('show');
+    });
+
+    // Exit Intent Pop-Up
+    const exitPopup = document.getElementById('exit-popup');
+    const closePopup = document.getElementById('close-popup');
+    document.addEventListener('mouseleave', e => {
+      if (e.clientY < 0) exitPopup.classList.remove('hidden');
+    });
+    closePopup.addEventListener('click', () => exitPopup.classList.add('hidden'));
+
+    // Mock Stock Counter
+    let stock = 32;
+    setInterval(() => {
+      if (stock > 20) stock--;
+      document.querySelector('#buy-now p').textContent = `Only ${stock} left in stock! Secure your elixir with free shipping.`;
+    }, 60000);
+  </script>
+</body>
+</html>
